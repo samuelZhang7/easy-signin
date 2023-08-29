@@ -62,7 +62,7 @@ func getArgs() ([]int64, error) {
 	args := make([]int64, 3)
 	// 从命令行参数获取操作命令和userID
 	if len(os.Args) < 4 {
-		return args, fmt.Errorf("请传入参数1：signin|makeup|print，参数2：userID, 参数3：补卡的日期（如非补卡命令，请任意输入1~9任意一个数字）")
+		return args, fmt.Errorf("请传入参数1：signin|makeup|print，参数2：userID, 参数3：补签的日期（如非补卡命令，请任意输入1~9任意一个数字）")
 	}
 
 	// 第一个参数是可执行文件的路径，忽略
@@ -91,7 +91,7 @@ func getArgs() ([]int64, error) {
 	day, err := strconv.ParseInt(os.Args[3], 10, 64)
 	// 此处只做了基础的日期判断，实际还应该做日期是否大于当月的最大天数
 	if err != nil || day < 1 || day > 31 {
-		return args, fmt.Errorf("无效的补卡日期（如非补卡命令，请任意输入1~9任意一个数字）：%s\n", os.Args[2])
+		return args, fmt.Errorf("无效的补签日期（如非补卡命令，请任意输入1~9任意一个数字）：%s\n", os.Args[2])
 	}
 	args[2] = day
 

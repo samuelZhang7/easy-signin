@@ -37,6 +37,7 @@ func (s *Service) MakeUpSignIn(userID int64, day int) error {
 	return nil
 }
 
+// checkAndSimulateSignin 判断用户补签的day,并模拟用户补签
 func checkAndSimulateSignin(bitmap []byte, day int) bool {
 	// bitmap是一个4字节，32位,只要定位到相应的字节，然后根据day构建一个字节，然后对两个字节位运算
 	// setBit时从0开始，因此第day天在第day-1位上
@@ -52,6 +53,7 @@ func checkAndSimulateSignin(bitmap []byte, day int) bool {
 	return signed
 }
 
+// makeupCard 执行用户补签,更新用户签到信息
 func makeupCard(bitmap []byte, day int, userID int64) error {
 	// 1. 获取补签后的连续签到次数
 	continuousDays := getContinuousDays(bitmap)
